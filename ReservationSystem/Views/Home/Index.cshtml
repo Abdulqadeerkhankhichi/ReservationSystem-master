@@ -1,0 +1,227 @@
+﻿@model IEnumerable<ReservationSystem.Models.BookingData_Result>
+@{
+    ViewBag.Title = "Index";
+    string BackgroundColor = "";
+}
+
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+    @*<div class="page-header" style="background-color: white; margin-bottom:0%">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="breadcrumb" style="">
+                        <li class="breadcrumb-item active"><i class="fa fa-home"> Home</i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+    <!-- /Page Header -->
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dash-widget-header">
+                        <span class="dash-widget-icon text-primary border-primary">
+                            <i class="fe fe-bookmark"></i>
+                        </span>
+                        <div class="dash-count">
+                            <h3>@ViewBag.TotalBooking</h3>
+                        </div>
+                    </div>
+                    <div class="dash-widget-info">
+                        <h6 class="text-muted">Total Bookings</h6>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-primary w-50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dash-widget-header">
+                        <span class="dash-widget-icon text-success">
+                            <i class="fe fe-check-circle"></i>
+                        </span>
+                        <div class="dash-count">
+                            <h3>@ViewBag.ConfirmBooking</h3>
+                        </div>
+                    </div>
+                    <div class="dash-widget-info">
+
+                        <h6 class="text-muted">Confirmed Bookings</h6>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-success w-50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dash-widget-header">
+                        <span class="dash-widget-icon text-danger border-danger">
+                            <i class="fe fe-close"></i>
+                        </span>
+                        <div class="dash-count">
+                            <h3>@ViewBag.CancelBooking</h3>
+                        </div>
+                    </div>
+                    <div class="dash-widget-info">
+
+                        <h6 class="text-muted">Canceled Bookings</h6>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-danger w-50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="dash-widget-header">
+                        <span class="dash-widget-icon text-warning border-warning">
+                            <i class="fe fe-folder"></i>
+                        </span>
+                        <div class="dash-count">
+                            <h3>@ViewBag.NewBooking</h3>
+                        </div>
+                    </div>
+                    <div class="dash-widget-info">
+
+                        <h6 class="text-muted">New Bookings</h6>
+                        <div class="progress progress-sm">
+                            <div class="progress-bar bg-warning w-50"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="card-title"><i class="fa fa-check"> NEW TOUR LIST</i></h6>
+                </div>
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="cell-border table table-hover table-center  mb-0 " id="UserTable">
+                            <thead>
+                                <tr>
+                                    <th style="display:none;">User ID</th>
+                                    <th>Ref No</th>
+                                    <th>Client Name</th>
+                                    <th>From <br> To</th>
+                                    <th>Arrival Date</th>
+                                    <th>Departure Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (ReservationSystem.Models.BookingData_Result Booking in Model)
+                                {
+                                    //if (Booking.Status == 1)
+                                    //{
+                                    //    BackgroundColor = "#60fe67";
+                                    //}
+                                    //else if (Booking.Status == 2)
+                                    //{
+                                    //    BackgroundColor = "#fb94dd";
+                                    //}
+                                    //else if (Booking.Status == 3)
+                                    //{
+                                    //    BackgroundColor = "#89b8ff";
+                                    //}
+                                    //else if (Booking.Status == 4)
+                                    //{
+                                    //    BackgroundColor = "#e1ff69";
+                                    //}
+                                    //else if (Booking.Status == 5)
+                                    //{
+                                    //    BackgroundColor = "#ffa4ad";
+                                    //}
+                                    //else if (Booking.Status == 6)
+                                    //{
+                                    //    BackgroundColor = "#ffa4ad";
+                                    //}
+                    <tr style="background-color: @BackgroundColor !important;">
+                        <td style="display:none;">@Booking.BookingId</td>
+                        <td>@Booking.ReferenceNo</td>
+                        <td>@Booking.Name</td>
+                        <td>@Booking.APL to @Booking.ADL <br />  @Booking.DPL to @Booking.DDL</td>
+                        <td>@Booking.ArrivalDate.Value.ToString("dd/MM/yyyy") @Booking.ArrivalTime</td>
+                        <td>@Booking.DepartureDate.Value.ToString("dd/MM/yyyy") @Booking.DepartureTime</td>
+                        <td>@Booking.StatusName</td>
+
+                        <td class="text-end">
+                            <div class="actions">
+                                <a href="@Url.Action("ViewBooking","Booking",new {id=Booking.BookingId})" id="EditUser" class="btn btn-primary">
+                                    <i class=""></i> View
+                                </a>
+                            </div>
+                        </td>
+                    </tr>}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+   
+<script src="~/Content/assets/js/jquery-3.5.1.js"></script>
+<script>
+
+    $(document).ready(function () {
+        var table = $('#UserTable').DataTable({
+            destroy: true,
+            @*dom: 'Bfrtip',
+            //lengthMenu: [
+            //    [10, 25, 50, -1],
+            //    ['10 rows', '25 rows', '50 rows', 'Show all']
+            //],
+            buttons: [
+                'pageLength',
+                {
+                    extend: 'pdf',
+                    title: function () { return "ALL TOUR LIST"; },
+                    customize: function (doc) {
+                        doc.styles.title = {
+                            //color: 'red',
+                            fontSize: '20',
+                            //background: 'blue',
+                            alignment: 'left'
+                        }
+                    },
+                    message: 'Report date- @DateTime.Now.ToString("yyyy-MM-dd")',
+                    exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6]
+                    }
+                }
+            ],*@
+            @* "lengthMenu": [@Retrieves],*@
+        order: [[0, 'desc']],
+
+        });
+
+        $(".nav li ul li").removeClass("active");
+        $('#Dashboard').addClass('active');
+
+
+    });
+</script>
+

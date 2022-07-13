@@ -1,0 +1,537 @@
+﻿@model  ReservationSystem.Models.tblBooking
+@{
+    ViewBag.Title = "Bookings";
+    string BackgroundColor = "";
+
+    DateTime DD = Model.DepartureDate.Value;
+    DateTime AD = Model.ArrivalDate.Value;
+
+    string Update = @ViewBag.Update;
+
+
+}
+
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+   
+    <div style="display:none;" class="alert alert-success alert-dismissible fade show" id="UpdateAlert" role="alert">
+        <strong>Success!</strong> @ViewBag.Update
+    </div>
+    <!-- /Page Header -->
+    @using (Html.BeginForm("EditBooking", "Booking", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {@Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body row">
+                    <div class="col-md-6">
+                        <i class="fa fa-align-right"> Ref NO: <b>@Model.ReferenceNo</b> </i>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button class="btn btn-primary "><i class="fa fa-save"> Save</i></button>
+                        @if (Model.Status == 1 || Model.Status == 6)
+                        {
+                            <a href="@Url.Action("ApprovalBooking","Booking",new {id=Model.BookingId})" class="btn btn-success" style="color:white"><i class="fa fa-check"> Approval</i></a>
+                        }
+                        <a href="@Url.Action("Bookings","Booking",new {id=Model.BookingId})" class="btn btn-secondary "><i class="fa fa-list"> Booking List</i></a>
+                        <input class="form-control" type="text" name="BookingId" value="@Model.BookingId" hidden />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-home">    RESERVATIONS DETAILS</i>
+</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff;">
+                                <tr>
+                                    <td>
+                                        Order Status:
+                                    </td>
+                                    <td>
+                                        <select class="form-control"  name="Status">
+                                            @foreach (ReservationSystem.Models.tblStatu item in @ViewBag.Status)
+                                            {
+                                                if (@Model.Status == @item.StatusId)
+                                                {
+                                                    <option value="@item.StatusId" selected>@item.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.StatusId">@item.Name</option>
+                                                }
+
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Transfer Type:
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="TripType">
+                                            <option value="@Model.TripType">@Model.tblTripType.Name</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td>
+                                            Pickup Location:
+                                        </td>
+                                        <td>
+                                            <select class="form-control" name="ArrivalPickupId">
+                                                @foreach (ReservationSystem.Models.tblLocation item in @ViewBag.Locations)
+                                                {
+                                                    if (@Model.ArrivalPickupId == @item.LocationId)
+                                                    {
+                                                        <option value="@item.LocationId" selected>@item.Name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.LocationId">@item.Name</option>
+                                                    }
+
+                                                }
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Pick up Airport/ Address:
+                                        </td>
+                                        <td>
+                                            <input  class="form-control" type="text" name="name" value="NULL" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Drop of Location:
+                                        </td>
+                                        <td>
+                                            <select class="form-control" name="ArrivalDropofId">
+                                                @foreach (ReservationSystem.Models.tblLocation item in @ViewBag.Locations)
+                                                {
+                                                    if (@Model.ArrivalDropofId == @item.LocationId)
+                                                    {
+                                                        <option value="@item.LocationId" selected>@item.Name</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.LocationId">@item.Name</option>
+                                                    }
+
+                                                }
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Drop Hotel/ Address:
+                                        </td>
+                                        <td>
+                                            <input  class="form-control" type="text" name="name" value="NULL" />
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-user-circle">    PASSENGER DETAILS</i>
+</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff;">
+                                <tr>
+                                    <td>
+                                        Adults :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="number" name="Adults" value="@Model.Adults" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Children :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="number" name="Children" value="@Model.Children" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Babies :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="number" name="Babies" value="@Model.Babies" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Amount :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="number" name="Amount" value="@Model.Amount" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Payment Status :
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="PaymentStatus">
+                                            @foreach (ReservationSystem.Models.tblPaymentStatu item in @ViewBag.PaymentStatus)
+                                            {
+                                                if (@Model.PaymentStatus == @item.PaymentStatusId)
+                                                {
+                                                    <option value="@item.PaymentStatusId" selected>@item.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.PaymentStatusId">@item.Name</option>
+                                                }
+
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-plane">   ARRIVAL DETAILS</i>
+</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff;">
+                                <tr>
+                                    <td>
+                                        Date :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="date" name="ArrivalDate" value="@AD.ToString("yyyy-MM-dd")" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Time :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="time" name="ArrivalTime" value="@Model.ArrivalTime" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Transport Type :
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="ArrivalTransportType">
+                                            @if (@Model.ArrivalTransportType.ToLower() == "flight")
+                                            {
+                                                <option value="Flight" selected>Flight</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Flight">Flight</option>
+                                            }
+                                            @if (@Model.ArrivalTransportType.ToLower() == "train")
+                                            {
+                                                <option value="Train" selected>Train</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Train">Train</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Pickup :
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="ArrivalPickupId">
+                                            @foreach (ReservationSystem.Models.tblLocation item in @ViewBag.Locations)
+                                            {
+                                                if (@Model.ArrivalPickupId == @item.LocationId)
+                                                {
+                                                    <option value="@item.LocationId" selected>@item.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.LocationId">@item.Name</option>
+                                                }
+
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Pickup Address :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text"  value="NULL" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Drop :
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="ArrivalDropofId">
+                                            @foreach (ReservationSystem.Models.tblLocation item in @ViewBag.Locations)
+                                            {
+                                                if (@Model.ArrivalDropofId == @item.LocationId)
+                                                {
+                                                    <option value="@item.LocationId" selected>@item.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.LocationId">@item.Name</option>
+                                                }
+
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-user-circle">   CUSTOMER DETAILS</i>
+</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff;">
+                                <tr>
+                                    <td>
+                                        Name :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text" name="Name" value="@Model.Name" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Email :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text" name="Email" value="@Model.Email" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Phone :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text" name="Phone" value="@Model.Phone" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Comments :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text" name="Message" value="@Model.Message" readonly />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Reserved Date :
+                                    </td>
+                                    <td>
+                                        @Model.CreatedDate
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-plane">    DEPARTURE DETAILS</i>
+</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff;">
+                                <tr>
+                                    <td>
+                                        Date :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="date" name="DepartureDate" value="@DD.ToString("yyyy-MM-dd")" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Time :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="time" name="DepartureTime" value="@Model.DepartureTime" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Pickup :
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="DeparturePickupId">
+                                            @foreach (ReservationSystem.Models.tblLocation item in @ViewBag.Locations)
+                                            {
+                                                if (@Model.DeparturePickupId == @item.LocationId)
+                                                {
+                                                    <option value="@item.LocationId" selected>@item.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.LocationId">@item.Name</option>
+                                                }
+
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Pickup Address :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text"  value="NULL" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Drop :
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="DepartureDropofId">
+                                            @foreach (ReservationSystem.Models.tblLocation item in @ViewBag.Locations)
+                                            {
+                                                if (@Model.DepartureDropofId == @item.LocationId)
+                                                {
+                                                    <option value="@item.LocationId" selected>@item.Name</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.LocationId">@item.Name</option>
+                                                }
+
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Drop Address :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text"  value="NULL" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Transport Type :
+                                    </td>
+                                    <td>
+                                        <select class="form-control" name="DepartureTransportType">
+                                            @if (@Model.DepartureTransportType.ToLower() == "flight")
+                                            {
+                                                <option value="Flight" selected>Flight</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Flight">Flight</option>
+                                            }
+                                            @if (@Model.DepartureTransportType.ToLower() == "train")
+                                            {
+                                                <option value="Train" selected>Train</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="Train">Train</option>
+                                            }
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Flight/Train No :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text" name="Flight_TrainNo" value=" @Model.Flight_TrainNo" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Comming From :
+                                    </td>
+                                    <td>
+                                        <input  class="form-control" type="text" name="CommingFrom" value=" @Model.CommingFrom" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+</div>
+<script src="~/Content/assets/js/jquery-3.5.1.js"></script>
+<script>
+
+    $(document).ready(function () {
+        if ("@Update" != "") {
+            $('#UpdateAlert').fadeIn();
+            $('#UpdateAlert').fadeOut(6000);
+        }
+        else {
+            $('#UpdateAlert').fadeOut();
+        }
+
+        $(".nav li ul li").removeClass("active");
+        $('#Booking').addClass('active');
+
+
+    });
+</script>
+

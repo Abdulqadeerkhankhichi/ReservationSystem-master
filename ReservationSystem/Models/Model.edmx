@@ -1,0 +1,1298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ReservationSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReferenceNo" Type="nvarchar(max)" />
+          <Property Name="ArrivalPickupId" Type="int" />
+          <Property Name="ArrivalPickupOther" Type="nvarchar" MaxLength="500" />
+          <Property Name="ArrivalDropofId" Type="int" />
+          <Property Name="ArrivalDropofOther" Type="nvarchar" MaxLength="500" />
+          <Property Name="ArrivalTransportType" Type="nvarchar(max)" />
+          <Property Name="ArrivalDate" Type="datetime" />
+          <Property Name="ArrivalTime" Type="time" Precision="7" />
+          <Property Name="Flight_TrainNo" Type="nvarchar(max)" />
+          <Property Name="CommingFrom" Type="nvarchar(max)" />
+          <Property Name="DeparturePickupId" Type="int" />
+          <Property Name="DeparturePickupOther" Type="nvarchar" MaxLength="500" />
+          <Property Name="DepartureDropofId" Type="int" />
+          <Property Name="DepartureDropofOther" Type="nvarchar" MaxLength="500" />
+          <Property Name="DepartureTransportType" Type="nvarchar(max)" />
+          <Property Name="DepartureDate" Type="datetime" />
+          <Property Name="DepartureTime" Type="time" Precision="7" />
+          <Property Name="Adults" Type="int" />
+          <Property Name="Children" Type="int" />
+          <Property Name="Babies" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="TripType" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="PaymentStatus" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="EditBy" Type="int" />
+          <Property Name="EditDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblCat">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Name="CatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Passanger" Type="int" />
+        </EntityType>
+        <EntityType Name="tblContactUs">
+          <Key>
+            <PropertyRef Name="ContactUsId" />
+          </Key>
+          <Property Name="ContactUsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="EditBy" Type="int" />
+          <Property Name="EditDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblPaymentStatus">
+          <Key>
+            <PropertyRef Name="PaymentStatusId" />
+          </Key>
+          <Property Name="PaymentStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblRate">
+          <Key>
+            <PropertyRef Name="RateId" />
+          </Key>
+          <Property Name="RateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatId" Type="int" />
+          <Property Name="TourId" Type="int" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="EditBy" Type="int" />
+          <Property Name="EditDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblReview">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="image" />
+          <Property Name="Review" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="EditBy" Type="int" />
+          <Property Name="EditDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblTour">
+          <Key>
+            <PropertyRef Name="TourId" />
+          </Key>
+          <Property Name="TourId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="500" />
+          <Property Name="FromLocation" Type="int" />
+          <Property Name="ToLocation" Type="int" />
+          <Property Name="PickupHours" Type="int" />
+        </EntityType>
+        <EntityType Name="tblTripType">
+          <Key>
+            <PropertyRef Name="TripTypeId" />
+          </Key>
+          <Property Name="TripTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usernam" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tblBooking_tblLocation3">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="ArrivalPickupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblLocation4">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="ArrivalDropofId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblLocation6">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="DeparturePickupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblLocation7">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="DepartureDropofId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblPaymentStatus">
+          <End Role="tblPaymentStatus" Type="Self.tblPaymentStatus" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPaymentStatus">
+              <PropertyRef Name="PaymentStatusId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="PaymentStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblStatus">
+          <End Role="tblStatus" Type="Self.tblStatus" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblTripType">
+          <End Role="tblTripType" Type="Self.tblTripType" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTripType">
+              <PropertyRef Name="TripTypeId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="TripType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLocation_tblLocation">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblLocation1" Type="Self.tblLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblLocation1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRate_tblCat">
+          <End Role="tblCat" Type="Self.tblCat" Multiplicity="0..1" />
+          <End Role="tblRate" Type="Self.tblRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCat">
+              <PropertyRef Name="CatId" />
+            </Principal>
+            <Dependent Role="tblRate">
+              <PropertyRef Name="CatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRate_tblTour">
+          <End Role="tblTour" Type="Self.tblTour" Multiplicity="0..1" />
+          <End Role="tblRate" Type="Self.tblRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTour">
+              <PropertyRef Name="TourId" />
+            </Principal>
+            <Dependent Role="tblRate">
+              <PropertyRef Name="TourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTour_tblLocation">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblTour" Type="Self.tblTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblTour">
+              <PropertyRef Name="FromLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTour_tblLocation1">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblTour" Type="Self.tblTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblTour">
+              <PropertyRef Name="ToLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BookingData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DailyReportData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="GetBookingData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RateCatData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="RateData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TourLocationData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ReservationSystemModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBooking" EntityType="Self.tblBooking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCat" EntityType="Self.tblCat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContactUs" EntityType="Self.tblContactUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLocation" EntityType="Self.tblLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPaymentStatus" EntityType="Self.tblPaymentStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRate" EntityType="Self.tblRate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReview" EntityType="Self.tblReview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStatus" EntityType="Self.tblStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTour" EntityType="Self.tblTour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTripType" EntityType="Self.tblTripType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblBooking_tblLocation3" Association="Self.FK_tblBooking_tblLocation3">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblLocation4" Association="Self.FK_tblBooking_tblLocation4">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblLocation6" Association="Self.FK_tblBooking_tblLocation6">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblLocation7" Association="Self.FK_tblBooking_tblLocation7">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblPaymentStatus" Association="Self.FK_tblBooking_tblPaymentStatus">
+            <End Role="tblPaymentStatus" EntitySet="tblPaymentStatus" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblStatus" Association="Self.FK_tblBooking_tblStatus">
+            <End Role="tblStatus" EntitySet="tblStatus" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblTripType" Association="Self.FK_tblBooking_tblTripType">
+            <End Role="tblTripType" EntitySet="tblTripType" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLocation_tblLocation" Association="Self.FK_tblLocation_tblLocation">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblLocation1" EntitySet="tblLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRate_tblCat" Association="Self.FK_tblRate_tblCat">
+            <End Role="tblCat" EntitySet="tblCat" />
+            <End Role="tblRate" EntitySet="tblRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRate_tblTour" Association="Self.FK_tblRate_tblTour">
+            <End Role="tblTour" EntitySet="tblTour" />
+            <End Role="tblRate" EntitySet="tblRate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTour_tblLocation" Association="Self.FK_tblTour_tblLocation">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblTour" EntitySet="tblTour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTour_tblLocation1" Association="Self.FK_tblTour_tblLocation1">
+            <End Role="tblLocation" EntitySet="tblLocation" />
+            <End Role="tblTour" EntitySet="tblTour" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ReservationSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="BookingId" />
+          </Key>
+          <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArrivalPickupId" Type="Int32" />
+          <Property Name="ArrivalPickupOther" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ArrivalDropofId" Type="Int32" />
+          <Property Name="ArrivalDropofOther" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ArrivalTransportType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ArrivalDate" Type="DateTime" Precision="3" />
+          <Property Name="ArrivalTime" Type="Time" Precision="7" />
+          <Property Name="Flight_TrainNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CommingFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DeparturePickupId" Type="Int32" />
+          <Property Name="DeparturePickupOther" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureDropofId" Type="Int32" />
+          <Property Name="DepartureDropofOther" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureTransportType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartureDate" Type="DateTime" Precision="3" />
+          <Property Name="DepartureTime" Type="Time" Precision="7" />
+          <Property Name="Adults" Type="Int32" />
+          <Property Name="Children" Type="Int32" />
+          <Property Name="Babies" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TripType" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="PaymentStatus" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="EditBy" Type="Int32" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="tblLocation" Relationship="Self.FK_tblBooking_tblLocation3" FromRole="tblBooking" ToRole="tblLocation" />
+          <NavigationProperty Name="tblLocation1" Relationship="Self.FK_tblBooking_tblLocation4" FromRole="tblBooking" ToRole="tblLocation" />
+          <NavigationProperty Name="tblLocation2" Relationship="Self.FK_tblBooking_tblLocation6" FromRole="tblBooking" ToRole="tblLocation" />
+          <NavigationProperty Name="tblLocation3" Relationship="Self.FK_tblBooking_tblLocation7" FromRole="tblBooking" ToRole="tblLocation" />
+          <NavigationProperty Name="tblPaymentStatu" Relationship="Self.FK_tblBooking_tblPaymentStatus" FromRole="tblBooking" ToRole="tblPaymentStatus" />
+          <NavigationProperty Name="tblStatu" Relationship="Self.FK_tblBooking_tblStatus" FromRole="tblBooking" ToRole="tblStatus" />
+          <NavigationProperty Name="tblTripType" Relationship="Self.FK_tblBooking_tblTripType" FromRole="tblBooking" ToRole="tblTripType" />
+        </EntityType>
+        <EntityType Name="tblCat">
+          <Key>
+            <PropertyRef Name="CatId" />
+          </Key>
+          <Property Name="CatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Passanger" Type="Int32" />
+          <NavigationProperty Name="tblRates" Relationship="Self.FK_tblRate_tblCat" FromRole="tblCat" ToRole="tblRate" />
+        </EntityType>
+        <EntityType Name="tblContactU">
+          <Key>
+            <PropertyRef Name="ContactUsId" />
+          </Key>
+          <Property Name="ContactUsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="EditBy" Type="Int32" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="tblBookings" Relationship="Self.FK_tblBooking_tblLocation3" FromRole="tblLocation" ToRole="tblBooking" />
+          <NavigationProperty Name="tblBookings1" Relationship="Self.FK_tblBooking_tblLocation4" FromRole="tblLocation" ToRole="tblBooking" />
+          <NavigationProperty Name="tblBookings2" Relationship="Self.FK_tblBooking_tblLocation6" FromRole="tblLocation" ToRole="tblBooking" />
+          <NavigationProperty Name="tblBookings3" Relationship="Self.FK_tblBooking_tblLocation7" FromRole="tblLocation" ToRole="tblBooking" />
+          <NavigationProperty Name="tblLocation1" Relationship="Self.FK_tblLocation_tblLocation" FromRole="tblLocation" ToRole="tblLocation1" />
+          <NavigationProperty Name="tblLocation2" Relationship="Self.FK_tblLocation_tblLocation" FromRole="tblLocation1" ToRole="tblLocation" />
+          <NavigationProperty Name="tblTours" Relationship="Self.FK_tblTour_tblLocation" FromRole="tblLocation" ToRole="tblTour" />
+          <NavigationProperty Name="tblTours1" Relationship="Self.FK_tblTour_tblLocation1" FromRole="tblLocation" ToRole="tblTour" />
+        </EntityType>
+        <EntityType Name="tblPaymentStatu">
+          <Key>
+            <PropertyRef Name="PaymentStatusId" />
+          </Key>
+          <Property Name="PaymentStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBookings" Relationship="Self.FK_tblBooking_tblPaymentStatus" FromRole="tblPaymentStatus" ToRole="tblBooking" />
+        </EntityType>
+        <EntityType Name="tblRate">
+          <Key>
+            <PropertyRef Name="RateId" />
+          </Key>
+          <Property Name="RateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatId" Type="Int32" />
+          <Property Name="TourId" Type="Int32" />
+          <Property Name="Rate" Type="Double" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="EditBy" Type="Int32" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="tblCat" Relationship="Self.FK_tblRate_tblCat" FromRole="tblRate" ToRole="tblCat" />
+          <NavigationProperty Name="tblTour" Relationship="Self.FK_tblRate_tblTour" FromRole="tblRate" ToRole="tblTour" />
+        </EntityType>
+        <EntityType Name="tblReview">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="EditBy" Type="Int32" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblStatu">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBookings" Relationship="Self.FK_tblBooking_tblStatus" FromRole="tblStatus" ToRole="tblBooking" />
+        </EntityType>
+        <EntityType Name="tblTour">
+          <Key>
+            <PropertyRef Name="TourId" />
+          </Key>
+          <Property Name="TourId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FromLocation" Type="Int32" />
+          <Property Name="ToLocation" Type="Int32" />
+          <Property Name="PickupHours" Type="Int32" />
+          <NavigationProperty Name="tblLocation" Relationship="Self.FK_tblTour_tblLocation" FromRole="tblTour" ToRole="tblLocation" />
+          <NavigationProperty Name="tblLocation1" Relationship="Self.FK_tblTour_tblLocation1" FromRole="tblTour" ToRole="tblLocation" />
+          <NavigationProperty Name="tblRates" Relationship="Self.FK_tblRate_tblTour" FromRole="tblTour" ToRole="tblRate" />
+        </EntityType>
+        <EntityType Name="tblTripType">
+          <Key>
+            <PropertyRef Name="TripTypeId" />
+          </Key>
+          <Property Name="TripTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBookings" Relationship="Self.FK_tblBooking_tblTripType" FromRole="tblTripType" ToRole="tblBooking" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usernam" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_tblBooking_tblLocation3">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="ArrivalPickupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblLocation4">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="ArrivalDropofId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblLocation6">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="DeparturePickupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblLocation7">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="DepartureDropofId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblPaymentStatus">
+          <End Role="tblPaymentStatus" Type="Self.tblPaymentStatu" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPaymentStatus">
+              <PropertyRef Name="PaymentStatusId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="PaymentStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblStatus">
+          <End Role="tblStatus" Type="Self.tblStatu" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStatus">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblTripType">
+          <End Role="tblTripType" Type="Self.tblTripType" Multiplicity="0..1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTripType">
+              <PropertyRef Name="TripTypeId" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="TripType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRate_tblCat">
+          <End Role="tblCat" Type="Self.tblCat" Multiplicity="0..1" />
+          <End Role="tblRate" Type="Self.tblRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCat">
+              <PropertyRef Name="CatId" />
+            </Principal>
+            <Dependent Role="tblRate">
+              <PropertyRef Name="CatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLocation_tblLocation">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblLocation1" Type="Self.tblLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblLocation1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTour_tblLocation">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblTour" Type="Self.tblTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblTour">
+              <PropertyRef Name="FromLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTour_tblLocation1">
+          <End Role="tblLocation" Type="Self.tblLocation" Multiplicity="0..1" />
+          <End Role="tblTour" Type="Self.tblTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="tblTour">
+              <PropertyRef Name="ToLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRate_tblTour">
+          <End Role="tblTour" Type="Self.tblTour" Multiplicity="0..1" />
+          <End Role="tblRate" Type="Self.tblRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTour">
+              <PropertyRef Name="TourId" />
+            </Principal>
+            <Dependent Role="tblRate">
+              <PropertyRef Name="TourId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ReservationSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblBookings" EntityType="Self.tblBooking" />
+          <EntitySet Name="tblCats" EntityType="Self.tblCat" />
+          <EntitySet Name="tblContactUs" EntityType="Self.tblContactU" />
+          <EntitySet Name="tblLocations" EntityType="Self.tblLocation" />
+          <EntitySet Name="tblPaymentStatus" EntityType="Self.tblPaymentStatu" />
+          <EntitySet Name="tblRates" EntityType="Self.tblRate" />
+          <EntitySet Name="tblReviews" EntityType="Self.tblReview" />
+          <EntitySet Name="tblStatus" EntityType="Self.tblStatu" />
+          <EntitySet Name="tblTours" EntityType="Self.tblTour" />
+          <EntitySet Name="tblTripTypes" EntityType="Self.tblTripType" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <AssociationSet Name="FK_tblBooking_tblLocation3" Association="Self.FK_tblBooking_tblLocation3">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblLocation4" Association="Self.FK_tblBooking_tblLocation4">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblLocation6" Association="Self.FK_tblBooking_tblLocation6">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblLocation7" Association="Self.FK_tblBooking_tblLocation7">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblPaymentStatus" Association="Self.FK_tblBooking_tblPaymentStatus">
+            <End Role="tblPaymentStatus" EntitySet="tblPaymentStatus" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblStatus" Association="Self.FK_tblBooking_tblStatus">
+            <End Role="tblStatus" EntitySet="tblStatus" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblTripType" Association="Self.FK_tblBooking_tblTripType">
+            <End Role="tblTripType" EntitySet="tblTripTypes" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRate_tblCat" Association="Self.FK_tblRate_tblCat">
+            <End Role="tblCat" EntitySet="tblCats" />
+            <End Role="tblRate" EntitySet="tblRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLocation_tblLocation" Association="Self.FK_tblLocation_tblLocation">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblLocation1" EntitySet="tblLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTour_tblLocation" Association="Self.FK_tblTour_tblLocation">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblTour" EntitySet="tblTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTour_tblLocation1" Association="Self.FK_tblTour_tblLocation1">
+            <End Role="tblLocation" EntitySet="tblLocations" />
+            <End Role="tblTour" EntitySet="tblTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRate_tblTour" Association="Self.FK_tblRate_tblTour">
+            <End Role="tblTour" EntitySet="tblTours" />
+            <End Role="tblRate" EntitySet="tblRates" />
+          </AssociationSet>
+          <FunctionImport Name="RateData" ReturnType="Collection(ReservationSystemModel.RateData_Result)" />
+          <FunctionImport Name="RateCatData" ReturnType="Collection(ReservationSystemModel.RateCatData_Result)" />
+          <FunctionImport Name="TourLocationData" ReturnType="Collection(ReservationSystemModel.TourLocationData_Result)" />
+          <FunctionImport Name="DailyReportData" ReturnType="Collection(ReservationSystemModel.DailyReportData_Result)">
+          <Parameter Name="Date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="BookingData" ReturnType="Collection(ReservationSystemModel.BookingData_Result)" />
+          <FunctionImport Name="GetBookingData" ReturnType="Collection(ReservationSystemModel.GetBookingData_Result)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="RateData_Result">
+          <Property Type="String" Name="LocationName" Nullable="true" MaxLength="1001" />
+          <Property Type="Double" Name="C1_3_Per" Nullable="true" />
+          <Property Type="Double" Name="C4_Per" Nullable="true" />
+          <Property Type="Double" Name="C5_Per" Nullable="true" />
+          <Property Type="Double" Name="C6_Per" Nullable="true" />
+          <Property Type="Double" Name="C7_Per" Nullable="true" />
+          <Property Type="Double" Name="C8_Per" Nullable="true" />
+          <Property Type="Double" Name="C9_Per" Nullable="true" />
+          <Property Type="Double" Name="C10_Per" Nullable="true" />
+          <Property Type="Double" Name="C11_Per" Nullable="true" />
+          <Property Type="Double" Name="C12_Per" Nullable="true" />
+          <Property Type="Double" Name="C13_Per" Nullable="true" />
+          <Property Type="Double" Name="C14_Per" Nullable="true" />
+          <Property Type="Double" Name="C15_Per" Nullable="true" />
+          <Property Type="Double" Name="C16_Per" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="RateCatData_Result">
+          <Property Type="Int32" Name="RateId" Nullable="false" />
+          <Property Type="Double" Name="Rate" Nullable="true" />
+          <Property Type="Int32" Name="CatId" Nullable="true" />
+          <Property Type="Int32" Name="TourId" Nullable="true" />
+          <Property Type="String" Name="CatName" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="TourLocationData_Result">
+          <Property Type="Int32" Name="TourId" Nullable="false" />
+          <Property Type="String" Name="LocationName" Nullable="true" MaxLength="1001" />
+        </ComplexType>
+        <ComplexType Name="DailyReportData_Result">
+          <Property Type="Int32" Name="BookingId" Nullable="false" />
+          <Property Type="String" Name="ReferenceNo" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalPickupId" Nullable="true" />
+          <Property Type="String" Name="ArrivalPickupOther" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="ArrivalDropofId" Nullable="true" />
+          <Property Type="String" Name="ArrivalDropofOther" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ArrivalTransportType" Nullable="true" />
+          <Property Type="DateTime" Name="ArrivalDate" Nullable="true" Precision="23" />
+          <Property Type="Time" Name="ArrivalTime" Nullable="true" />
+          <Property Type="String" Name="Flight_TrainNo" Nullable="true" />
+          <Property Type="String" Name="CommingFrom" Nullable="true" />
+          <Property Type="Int32" Name="DeparturePickupId" Nullable="true" />
+          <Property Type="String" Name="DeparturePickupOther" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepartureDropofId" Nullable="true" />
+          <Property Type="String" Name="DepartureDropofOther" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DepartureTransportType" Nullable="true" />
+          <Property Type="DateTime" Name="DepartureDate" Nullable="true" Precision="23" />
+          <Property Type="Time" Name="DepartureTime" Nullable="true" />
+          <Property Type="Int32" Name="Adults" Nullable="true" />
+          <Property Type="Int32" Name="Children" Nullable="true" />
+          <Property Type="Int32" Name="Babies" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="TripType" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="Int32" Name="PaymentStatus" Nullable="true" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="EditBy" Nullable="true" />
+          <Property Type="DateTime" Name="EditDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+          <Property Type="String" Name="APL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DPL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DDL" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="BookingData_Result">
+          <Property Type="Int32" Name="BookingId" Nullable="false" />
+          <Property Type="String" Name="ReferenceNo" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalPickupId" Nullable="true" />
+          <Property Type="String" Name="ArrivalPickupOther" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="ArrivalDropofId" Nullable="true" />
+          <Property Type="String" Name="ArrivalDropofOther" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ArrivalTransportType" Nullable="true" />
+          <Property Type="DateTime" Name="ArrivalDate" Nullable="true" Precision="23" />
+          <Property Type="Time" Name="ArrivalTime" Nullable="true" />
+          <Property Type="String" Name="Flight_TrainNo" Nullable="true" />
+          <Property Type="String" Name="CommingFrom" Nullable="true" />
+          <Property Type="Int32" Name="DeparturePickupId" Nullable="true" />
+          <Property Type="String" Name="DeparturePickupOther" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepartureDropofId" Nullable="true" />
+          <Property Type="String" Name="DepartureDropofOther" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DepartureTransportType" Nullable="true" />
+          <Property Type="DateTime" Name="DepartureDate" Nullable="true" Precision="23" />
+          <Property Type="Time" Name="DepartureTime" Nullable="true" />
+          <Property Type="Int32" Name="Adults" Nullable="true" />
+          <Property Type="Int32" Name="Children" Nullable="true" />
+          <Property Type="Int32" Name="Babies" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="TripType" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="Int32" Name="PaymentStatus" Nullable="true" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="EditBy" Nullable="true" />
+          <Property Type="DateTime" Name="EditDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="APL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DPL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DDL" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="GetBookingData_Result">
+          <Property Type="Int32" Name="BookingId" Nullable="false" />
+          <Property Type="String" Name="ReferenceNo" Nullable="true" />
+          <Property Type="Int32" Name="ArrivalPickupId" Nullable="true" />
+          <Property Type="String" Name="ArrivalPickupOther" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="ArrivalDropofId" Nullable="true" />
+          <Property Type="String" Name="ArrivalDropofOther" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ArrivalTransportType" Nullable="true" />
+          <Property Type="DateTime" Name="ArrivalDate" Nullable="true" Precision="23" />
+          <Property Type="Time" Name="ArrivalTime" Nullable="true" />
+          <Property Type="String" Name="Flight_TrainNo" Nullable="true" />
+          <Property Type="String" Name="CommingFrom" Nullable="true" />
+          <Property Type="Int32" Name="DeparturePickupId" Nullable="true" />
+          <Property Type="String" Name="DeparturePickupOther" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="DepartureDropofId" Nullable="true" />
+          <Property Type="String" Name="DepartureDropofOther" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DepartureTransportType" Nullable="true" />
+          <Property Type="DateTime" Name="DepartureDate" Nullable="true" Precision="23" />
+          <Property Type="Time" Name="DepartureTime" Nullable="true" />
+          <Property Type="Int32" Name="Adults" Nullable="true" />
+          <Property Type="Int32" Name="Children" Nullable="true" />
+          <Property Type="Int32" Name="Babies" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="Phone" Nullable="true" />
+          <Property Type="String" Name="Message" Nullable="true" />
+          <Property Type="Int32" Name="TripType" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="Double" Name="Amount" Nullable="true" />
+          <Property Type="Int32" Name="PaymentStatus" Nullable="true" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="EditBy" Nullable="true" />
+          <Property Type="DateTime" Name="EditDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+          <Property Type="String" Name="StatusName" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="APL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ADL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DPL" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="DDL" Nullable="true" MaxLength="500" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReservationSystemModelStoreContainer" CdmEntityContainer="ReservationSystemEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ReservationSystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBookings">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblBooking">
+              <MappingFragment StoreEntitySet="tblBooking">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="ArrivalPickupId" ColumnName="ArrivalPickupId" />
+                <ScalarProperty Name="ArrivalPickupOther" ColumnName="ArrivalPickupOther" />
+                <ScalarProperty Name="ArrivalDropofId" ColumnName="ArrivalDropofId" />
+                <ScalarProperty Name="ArrivalDropofOther" ColumnName="ArrivalDropofOther" />
+                <ScalarProperty Name="ArrivalTransportType" ColumnName="ArrivalTransportType" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="Flight_TrainNo" ColumnName="Flight_TrainNo" />
+                <ScalarProperty Name="CommingFrom" ColumnName="CommingFrom" />
+                <ScalarProperty Name="DeparturePickupId" ColumnName="DeparturePickupId" />
+                <ScalarProperty Name="DeparturePickupOther" ColumnName="DeparturePickupOther" />
+                <ScalarProperty Name="DepartureDropofId" ColumnName="DepartureDropofId" />
+                <ScalarProperty Name="DepartureDropofOther" ColumnName="DepartureDropofOther" />
+                <ScalarProperty Name="DepartureTransportType" ColumnName="DepartureTransportType" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="Adults" ColumnName="Adults" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
+                <ScalarProperty Name="Babies" ColumnName="Babies" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="TripType" ColumnName="TripType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCats">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblCat">
+              <MappingFragment StoreEntitySet="tblCat">
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Passanger" ColumnName="Passanger" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContactUs">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblContactU">
+              <MappingFragment StoreEntitySet="tblContactUs">
+                <ScalarProperty Name="ContactUsId" ColumnName="ContactUsId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLocations">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblLocation">
+              <MappingFragment StoreEntitySet="tblLocation">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPaymentStatus">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblPaymentStatu">
+              <MappingFragment StoreEntitySet="tblPaymentStatus">
+                <ScalarProperty Name="PaymentStatusId" ColumnName="PaymentStatusId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRates">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblRate">
+              <MappingFragment StoreEntitySet="tblRate">
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="TourId" ColumnName="TourId" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReviews">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblReview">
+              <MappingFragment StoreEntitySet="tblReview">
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStatus">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblStatu">
+              <MappingFragment StoreEntitySet="tblStatus">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTours">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblTour">
+              <MappingFragment StoreEntitySet="tblTour">
+                <ScalarProperty Name="TourId" ColumnName="TourId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="FromLocation" ColumnName="FromLocation" />
+                <ScalarProperty Name="ToLocation" ColumnName="ToLocation" />
+                <ScalarProperty Name="PickupHours" ColumnName="PickupHours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTripTypes">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblTripType">
+              <MappingFragment StoreEntitySet="tblTripType">
+                <ScalarProperty Name="TripTypeId" ColumnName="TripTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="ReservationSystemModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Usernam" ColumnName="Usernam" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="RateData" FunctionName="ReservationSystemModel.Store.RateData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservationSystemModel.RateData_Result">
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="C1_3_Per" ColumnName="1-3 Per" />
+                <ScalarProperty Name="C4_Per" ColumnName="4 Per" />
+                <ScalarProperty Name="C5_Per" ColumnName="5 Per" />
+                <ScalarProperty Name="C6_Per" ColumnName="6 Per" />
+                <ScalarProperty Name="C7_Per" ColumnName="7 Per" />
+                <ScalarProperty Name="C8_Per" ColumnName="8 Per" />
+                <ScalarProperty Name="C9_Per" ColumnName="9 Per" />
+                <ScalarProperty Name="C10_Per" ColumnName="10 Per" />
+                <ScalarProperty Name="C11_Per" ColumnName="11 Per" />
+                <ScalarProperty Name="C12_Per" ColumnName="12 Per" />
+                <ScalarProperty Name="C13_Per" ColumnName="13 Per" />
+                <ScalarProperty Name="C14_Per" ColumnName="14 Per" />
+                <ScalarProperty Name="C15_Per" ColumnName="15 Per" />
+                <ScalarProperty Name="C16_Per" ColumnName="16 Per" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RateCatData" FunctionName="ReservationSystemModel.Store.RateCatData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservationSystemModel.RateCatData_Result">
+                <ScalarProperty Name="RateId" ColumnName="RateId" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="CatId" ColumnName="CatId" />
+                <ScalarProperty Name="TourId" ColumnName="TourId" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="TourLocationData" FunctionName="ReservationSystemModel.Store.TourLocationData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservationSystemModel.TourLocationData_Result">
+                <ScalarProperty Name="TourId" ColumnName="TourId" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DailyReportData" FunctionName="ReservationSystemModel.Store.DailyReportData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservationSystemModel.DailyReportData_Result">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="ArrivalPickupId" ColumnName="ArrivalPickupId" />
+                <ScalarProperty Name="ArrivalPickupOther" ColumnName="ArrivalPickupOther" />
+                <ScalarProperty Name="ArrivalDropofId" ColumnName="ArrivalDropofId" />
+                <ScalarProperty Name="ArrivalDropofOther" ColumnName="ArrivalDropofOther" />
+                <ScalarProperty Name="ArrivalTransportType" ColumnName="ArrivalTransportType" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="Flight_TrainNo" ColumnName="Flight_TrainNo" />
+                <ScalarProperty Name="CommingFrom" ColumnName="CommingFrom" />
+                <ScalarProperty Name="DeparturePickupId" ColumnName="DeparturePickupId" />
+                <ScalarProperty Name="DeparturePickupOther" ColumnName="DeparturePickupOther" />
+                <ScalarProperty Name="DepartureDropofId" ColumnName="DepartureDropofId" />
+                <ScalarProperty Name="DepartureDropofOther" ColumnName="DepartureDropofOther" />
+                <ScalarProperty Name="DepartureTransportType" ColumnName="DepartureTransportType" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="Adults" ColumnName="Adults" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
+                <ScalarProperty Name="Babies" ColumnName="Babies" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="TripType" ColumnName="TripType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="APL" ColumnName="APL" />
+                <ScalarProperty Name="ADL" ColumnName="ADL" />
+                <ScalarProperty Name="DPL" ColumnName="DPL" />
+                <ScalarProperty Name="DDL" ColumnName="DDL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="BookingData" FunctionName="ReservationSystemModel.Store.BookingData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservationSystemModel.BookingData_Result">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="ArrivalPickupId" ColumnName="ArrivalPickupId" />
+                <ScalarProperty Name="ArrivalPickupOther" ColumnName="ArrivalPickupOther" />
+                <ScalarProperty Name="ArrivalDropofId" ColumnName="ArrivalDropofId" />
+                <ScalarProperty Name="ArrivalDropofOther" ColumnName="ArrivalDropofOther" />
+                <ScalarProperty Name="ArrivalTransportType" ColumnName="ArrivalTransportType" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="Flight_TrainNo" ColumnName="Flight_TrainNo" />
+                <ScalarProperty Name="CommingFrom" ColumnName="CommingFrom" />
+                <ScalarProperty Name="DeparturePickupId" ColumnName="DeparturePickupId" />
+                <ScalarProperty Name="DeparturePickupOther" ColumnName="DeparturePickupOther" />
+                <ScalarProperty Name="DepartureDropofId" ColumnName="DepartureDropofId" />
+                <ScalarProperty Name="DepartureDropofOther" ColumnName="DepartureDropofOther" />
+                <ScalarProperty Name="DepartureTransportType" ColumnName="DepartureTransportType" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="Adults" ColumnName="Adults" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
+                <ScalarProperty Name="Babies" ColumnName="Babies" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="TripType" ColumnName="TripType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="APL" ColumnName="APL" />
+                <ScalarProperty Name="ADL" ColumnName="ADL" />
+                <ScalarProperty Name="DPL" ColumnName="DPL" />
+                <ScalarProperty Name="DDL" ColumnName="DDL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBookingData" FunctionName="ReservationSystemModel.Store.GetBookingData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReservationSystemModel.GetBookingData_Result">
+                <ScalarProperty Name="BookingId" ColumnName="BookingId" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="ArrivalPickupId" ColumnName="ArrivalPickupId" />
+                <ScalarProperty Name="ArrivalPickupOther" ColumnName="ArrivalPickupOther" />
+                <ScalarProperty Name="ArrivalDropofId" ColumnName="ArrivalDropofId" />
+                <ScalarProperty Name="ArrivalDropofOther" ColumnName="ArrivalDropofOther" />
+                <ScalarProperty Name="ArrivalTransportType" ColumnName="ArrivalTransportType" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="ArrivalTime" ColumnName="ArrivalTime" />
+                <ScalarProperty Name="Flight_TrainNo" ColumnName="Flight_TrainNo" />
+                <ScalarProperty Name="CommingFrom" ColumnName="CommingFrom" />
+                <ScalarProperty Name="DeparturePickupId" ColumnName="DeparturePickupId" />
+                <ScalarProperty Name="DeparturePickupOther" ColumnName="DeparturePickupOther" />
+                <ScalarProperty Name="DepartureDropofId" ColumnName="DepartureDropofId" />
+                <ScalarProperty Name="DepartureDropofOther" ColumnName="DepartureDropofOther" />
+                <ScalarProperty Name="DepartureTransportType" ColumnName="DepartureTransportType" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="DepartureTime" ColumnName="DepartureTime" />
+                <ScalarProperty Name="Adults" ColumnName="Adults" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
+                <ScalarProperty Name="Babies" ColumnName="Babies" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="TripType" ColumnName="TripType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EditBy" ColumnName="EditBy" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="APL" ColumnName="APL" />
+                <ScalarProperty Name="ADL" ColumnName="ADL" />
+                <ScalarProperty Name="DPL" ColumnName="DPL" />
+                <ScalarProperty Name="DDL" ColumnName="DDL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

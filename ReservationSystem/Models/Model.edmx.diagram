@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="32af6e62a51e423d80f70ebe55da5612" Name="Diagram1">
+        <EntityTypeShape EntityType="ReservationSystemModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblBooking" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblCat" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblContactU" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblLocation" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblPaymentStatu" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblRate" Width="1.5" PointX="5.25" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblReview" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblStatu" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblTour" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblTripType" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReservationSystemModel.tblUser" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblBooking_tblLocation3" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblBooking_tblLocation4" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblBooking_tblLocation6" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblBooking_tblLocation7" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblBooking_tblPaymentStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblBooking_tblStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblBooking_tblTripType" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblRate_tblCat" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblLocation_tblLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblTour_tblLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblTour_tblLocation1" ManuallyRouted="false" />
+        <AssociationConnector Association="ReservationSystemModel.FK_tblRate_tblTour" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

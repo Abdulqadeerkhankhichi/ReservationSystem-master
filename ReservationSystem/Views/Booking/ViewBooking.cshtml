@@ -1,0 +1,389 @@
+﻿@model  ReservationSystem.Models.tblBooking
+@{
+    ViewBag.Title = "Bookings";
+    string BackgroundColor = "";
+
+    string Update = @ViewBag.Update;
+}
+
+<div class="content container-fluid">
+
+    <!-- Page Header -->
+  
+    <div style="display:none;" class="alert alert-info alert-dismissible fade show" id="UpdateAlert" role="alert">
+        <strong>Success!</strong> @ViewBag.Update
+    </div>
+    <!-- /Page Header -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+               
+                <div class="card-body row">
+                    <div class="col-md-6">
+                        <i class="fa fa-align-right"> Ref NO: <b>@Model.ReferenceNo</b> </i>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="@Url.Action("EditBooking","Booking",new {id=Model.BookingId})" class="btn btn-info "><i class="fa fa-pencil"> Edit</i></a>
+
+                        @if (Model.Status == 1 || Model.Status == 6)
+                        {
+                    <a href="@Url.Action("ApprovalBooking","Booking",new {id=Model.BookingId})" class="btn btn-success" style="color:white"><i class="fa fa-check"> Approval</i></a>}
+                        <a href="@Url.Action("Bookings","Booking",new {id=Model.BookingId})" class="btn btn-secondary"><i class="fa fa-list"> Booking List</i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-home">  RESERVATIONS DETAILS</i>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff; ">
+                                <tr>
+                                    <td>
+                                        Order Status:
+                                    </td>
+                                    <td>
+                                        @Model.tblStatu.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Transfer Type:
+                                    </td>
+                                    <td>
+                                        @Model.tblTripType.Name
+                                    </td>
+                                </tr>
+                                @*<tr>
+                                        <td>
+                                            Pickup Location:
+                                        </td>
+                                        <td>
+                                            @Model.tblLocation.Name
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Pick up Airport/ Address:
+                                        </td>
+                                        <td>
+                                            NULL
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Drop of Location:
+                                        </td>
+                                        <td>
+                                            @Model.tblLocation1.Name
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Drop Hotel/ Address:
+                                        </td>
+                                        <td>
+                                            NULL
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                  <i class="fa fa-user-circle">  PASSENGER DETAILS</i>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff; ">
+                                <tr>
+                                    <td>
+                                        Adults :
+                                    </td>
+                                    <td>
+                                        @Model.Adults
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Children :
+                                    </td>
+                                    <td>
+                                        @Model.Children
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Babies :
+                                    </td>
+                                    <td>
+                                        @Model.Babies
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Amount :
+                                    </td>
+                                    <td>
+                                        @Model.Amount
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Payment Status :
+                                    </td>
+                                    <td>
+                                        @Model.tblPaymentStatu.Name
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-plane">  ARRIVAL DETAILS</i>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff; ">
+                                <tr>
+                                    <td>
+                                        Arrival Date :
+                                    </td>
+                                    <td>
+                                        @Model.ArrivalDate.Value.ToString("dd/MM/yyyy")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Arrival Time :
+                                    </td>
+                                    <td>
+                                        @Model.ArrivalTime
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Arrival Transport Type :
+                                    </td>
+                                    <td>
+                                        @Model.ArrivalTransportType
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Arrival Pickup :
+                                    </td>
+                                    <td>
+                                        @Model.tblLocation.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Arrival Pickup Address :
+                                    </td>
+                                    <td>
+                                        NULL
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Arrival Drop :
+                                    </td>
+                                    <td>
+                                        @Model.tblLocation1.Name
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-user-circle">  CUSTOMER DETAILS</i>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff; ">
+                                <tr>
+                                    <td>
+                                        Name :
+                                    </td>
+                                    <td>
+                                        @Model.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Email :
+                                    </td>
+                                    <td>
+                                        @Model.Email
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Phone :
+                                    </td>
+                                    <td>
+                                        @Model.Phone
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Comments :
+                                    </td>
+                                    <td>
+                                        @Model.Message
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Reserved Date :
+                                    </td>
+                                    <td>
+                                        @Model.CreatedDate.Value.ToString("dd/MM/yyyy")
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-plane">  DEPARTURE DETAILS</i>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="cell-border table table-center  mb-0 " id="UserTable" style="border-collapse:inherit !important;">
+                            <tbody style="background-color: #8dddff; ">
+                                <tr>
+                                    <td>
+                                        Departure Date :
+                                    </td>
+                                    <td>
+                                        @Model.DepartureDate.Value.ToString("dd/MM/yyyy")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Departure Time :
+                                    </td>
+                                    <td>
+                                        @Model.DepartureTime
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Departure Pickup :
+                                    </td>
+                                    <td>
+                                        @Model.tblLocation2.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Departure Pickup Address :
+                                    </td>
+                                    <td>
+                                        NULL
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Departure Drop :
+                                    </td>
+                                    <td>
+                                        @Model.tblLocation3.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Departure Drop Address :
+                                    </td>
+                                    <td>
+                                        NULL
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Departure Transport Type :
+                                    </td>
+                                    <td>
+                                        @Model.DepartureTransportType
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Flight/Train No :
+                                    </td>
+                                    <td>
+                                        @Model.Flight_TrainNo
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Comming From :
+                                    </td>
+                                    <td>
+                                        @Model.CommingFrom
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/assets/js/jquery-3.5.1.js"></script>
+<script>
+
+    $(document).ready(function () {
+        if ("@Update" != "") {
+            $('#UpdateAlert').fadeIn();
+            $('#UpdateAlert').fadeOut(6000);
+        }
+        else {
+            $('#UpdateAlert').fadeOut();
+        }
+
+        $(".nav li ul li").removeClass("active");
+        $('#Booking').addClass('active');
+
+
+    });
+</script>
+

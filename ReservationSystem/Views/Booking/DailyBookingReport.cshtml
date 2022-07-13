@@ -1,0 +1,176 @@
+﻿@model IEnumerable<ReservationSystem.Models.DailyReportData_Result>
+@{
+    ViewBag.Title = "Bookings";
+    string BackgroundColor = "";
+    DateTime SearchDate = ViewBag.SearchDate;
+    DateTime DD = DateTime.Now;
+    DateTime AD = DateTime.Now;
+    int? Sum = 0;
+}
+
+<div class="content container-fluid">
+
+
+    <!-- /Page Header -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                @using (Html.BeginForm("DailyBookingReport", "Booking", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {@Html.AntiForgeryToken()
+                                <div class="card-body row">
+
+                                    <div class="col-md-3">
+
+                                        <input class="form-control" type="date" name="SearchDate" value="@SearchDate.ToString("yyyy-MM-dd")" />
+
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <button type="submit" class="btn btn-primary">  Search</button>
+                                    </div>
+                                    
+                                    <div class="col-md-6 text-right">
+
+                                    </div>
+                                </div>
+                }
+                                            </div>
+
+        </div>
+        <div class="col-md-12">
+
+
+
+            <div class="tab-content">
+                <div class="tab-pane show  active" id="solid-tab1">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="card-title"><i class="fe fe-list-task"> RESERVATIONS </i></h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="cell-border table table-hover table-center  mb-0 " id="UserTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Pickup Time</th>
+                                            <th>Passengers</th>
+                                            <th>Name<br /> Phone</th>
+                                            <th>Driver</th>
+                                            <th>Flight/Train</th>
+                                            <th>Pick Up</th>
+                                            <th>Drop Off</th>
+                                            <th>Price</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (ReservationSystem.Models.DailyReportData_Result Booking in Model)
+                                        {
+                                            if (Booking.Status == 1)
+                                            {
+                                                BackgroundColor = "#60fe67";
+                                            }
+                                            else if (Booking.Status == 2)
+                                            {
+                                                BackgroundColor = "#fb94dd";
+                                            }
+                                            else if (Booking.Status == 3)
+                                            {
+                                                BackgroundColor = "#89b8ff";
+                                            }
+                                            else if (Booking.Status == 4)
+                                            {
+                                                BackgroundColor = "#e1ff69";
+                                            }
+                                            else if (Booking.Status == 5)
+                                            {
+                                                BackgroundColor = "#ffa4ad";
+                                            }
+                                            else if (Booking.Status == 6)
+                                            {
+                                                BackgroundColor = "#ffa4ad";
+                                            }
+                                            if (Booking.Status != 5)
+                                            {
+                                                if (@Booking.DepartureDate != null)
+                                                {
+                                                    DD = @Booking.DepartureDate.Value;
+                                                }
+                                                if (@Booking.ArrivalDate != null)
+                                                {
+                                                    AD = @Booking.ArrivalDate.Value;
+                                                }
+                            <tr style="background-color: @BackgroundColor !important;">
+                                <td>@Booking.DepartureTime</td>
+                                @{ Sum = @Booking.Adults + @Booking.Children + @Booking.Babies; }
+                                <td>@Sum <br />A-@Booking.Adults C-@Booking.Children B-@Booking.Babies</td>
+                                <td>@Booking.Name<br />@Booking.Phone</td>
+                                <td></td>
+                                <td>@Booking.Flight_TrainNo</td>
+                                <td>@Booking.APL <br /> @Booking.ADL </td>
+                                <td> @Booking.DPL <br />@Booking.DDL</td>
+                                <td>@Booking.Amount</td>
+                            </tr>
+}
+
+                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/assets/js/jquery-3.5.1.js"></script>
+<script>
+
+
+
+    $(document).ready(function () {
+        var table = $('#UserTable').DataTable({
+            destroy: true,
+            dom: 'Bfrtip',
+            //lengthMenu: [
+            //    [10, 25, 50, -1],
+            //    ['10 rows', '25 rows', '50 rows', 'Show all']
+            //],
+            buttons: [
+                'pageLength',
+                {
+                    extend: 'pdf',
+                    title: function () { return "DAILY TOUR REPORT"; },
+                    customize: function (doc) {
+                        doc.styles.title = {
+                            //color: 'red',
+                            fontSize: '14',
+                            //background: 'blue',
+                            alignment: 'left'
+                        }
+                    },
+                    message: 'Report date- @DateTime.Now.ToString("yyyy-MM-dd")',
+                    exportOptions: {
+                        columns: [0,1, 2, 3, 4, 5, 6,7]
+                    }
+                }
+            ],
+            @* "lengthMenu": [@Retrieves],*@
+        order: [[0, 'desc']],
+
+        });
+
+        $(".nav li ul li").removeClass("active");
+        $('#DailyReport').addClass('active');
+
+
+    });
+</script>
+

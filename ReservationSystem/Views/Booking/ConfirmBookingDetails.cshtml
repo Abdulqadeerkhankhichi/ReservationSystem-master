@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ConfirmBookingDetails</title>
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <section>
+            <div class="container">
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 text-center">
+                            <div style="width: 90%; padding: 4% 5%; float: left; font-size: 14px; text-align: left; background: #FFF; text-align: center; border: 1px solid #0035bc; background: #94dbff; border-radius: 6px;">
+                                <img src="<?= $assets; ?>images/logo.png" alt="">
+                                <h4>
+                                    Dear Customer,<br>
+                                    Thank you for choosing WESTERN TOURS.
+                                </h4>
+                                <h4>We received your action as Confirmation.</h4>
+                                <h2 class="text-uppercasetext-theme-colored mt-0 mt-sm-30">Confirmation No :  <span class="text-theme-colored2"> <?php echo $ref; ?></span></h2>
+                                <div class="double-line-bottom-theme-colored-2"></div>
+                                <h5>
+                                    * Your driver will be waiting for you at the exit gate with your name displayed.<br>
+                                    * Please make sure that you have a copy of this confirmation upon arrival.<br>
+                                    * Please make your cell phone is switched on as soon as you land, so that our drivers could easily contact
+                                    you.<br>
+                                    * If you have any trouble finding your driver, please do not hesitate to contact our hotline (+33) 9814 759
+                                    69 or (+33) 6689 845 45<br>
+                                    * We provide baby seats and booster seats free of charges.<br>
+                                    " If the flight get delayed and the time passes 10:00pm(Paris Time), we will charge additional 10.00 euros(This is for the drivers who have been
+                                    waiting at the gate from the expected time of landing)"
+                                </h5>
+                                <h4 class="hidden-md">
+                                    Cancellation has to be done before 24 hours<br>
+                                    If there is an error,please contact us via hotline (+33) 9814 759 69 or (+33) 6689 845 45 or via email<br>
+                                    info@western-tours.com<br><br>
+
+                                    Thank You<br>
+                                    Best Regards<br>
+                                    Western tours
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div>
+</body>
+</html>

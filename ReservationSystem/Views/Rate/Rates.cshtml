@@ -1,0 +1,131 @@
+﻿@model IEnumerable<ReservationSystem.Models.TourLocationData_Result>
+@{
+    ViewBag.Title = "Bookings";
+    string BackgroundColor = "";
+    //DateTime SearchDate = ViewBag.SearchDate;
+    string Update = @ViewBag.Update;
+}
+
+<div class="content container-fluid">
+
+    
+    <div style="display:none;" class="alert alert-success alert-dismissible fade show" id="UpdateAlert" role="alert">
+        <strong>Success! </strong> Rate has been updated successfully.
+    </div>
+    <!-- /Page Header -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="card-title"><i class="fe fe-edit"> NEW RATES LIST </i></h6>
+                </div>
+               
+   
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="cell-border table table-hover table-center  mb-0 " id="UserTable">
+                                    <thead>
+                                        <tr>
+                                            <th> </th>
+                                            <th>1-3 Per</th>
+                                            <th>4 Per</th>
+                                            <th>5 Per</th>
+                                            <th>6 Per</th>
+                                            <th>7 Per</th>
+                                            <th>8 Per</th>
+                                            <th>9 Per</th>
+                                            <th>10 Per</th>
+                                            <th>11 Per</th>
+                                            <th>12 Per</th>
+                                            <th>13 Per</th>
+                                            <th>14 Per</th>
+                                            <th>15 Per</th>
+                                            <th>16 Per</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (ReservationSystem.Models.TourLocationData_Result item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.LocationName</td>
+
+                                                @foreach (ReservationSystem.Models.RateCatData_Result item1 in ViewBag.RateCatData)
+                                                {
+                                                    if (item.TourId == item1.TourId)
+                                                    {
+                                                        <td contenteditable="true"  data-Id="@item1.RateId"  @*onblur="Edit(@item1.RateId)"*@>@item1.Rate</td>
+                                                    }
+                                                    else
+                                                    {
+
+                                                    }
+
+                                                }
+                                            </tr>
+
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+   
+<script src="~/Content/assets/js/jquery-3.5.1.js"></script>
+<script>
+
+    $('table td').on('blur', function () {
+        //alert($(this).text() + " " + $(this).data("id"));
+        var id = $(this).data("id");
+        var rate = $(this).text();
+        var model = {
+            Id: id,
+            Rate: rate,
+        };
+        console.log(model);
+        $.ajax({
+            type: "POST",
+            url: "/Rate/EditRate",
+            data: JSON.stringify(model),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                $('#UpdateAlert').fadeIn();
+                $('#UpdateAlert').fadeOut(6000);
+                
+            }
+        });
+    });
+
+    //function Edit(Id) {
+    //    alert($(this).text() + " " + Id);
+        
+    //}
+    $(document).ready(function () {
+        if ("@Update" != "") {
+            $('#UpdateAlert').fadeIn();
+            $('#UpdateAlert').fadeOut(6000);
+        }
+        else {
+            $('#UpdateAlert').fadeOut();
+        }
+
+        $(".nav li ul li").removeClass("active");
+        $('#Rates').addClass('active');
+
+
+    });
+</script>
+

@@ -1,0 +1,272 @@
+﻿@model  ReservationSystem.Models.tblBooking
+@{
+    Layout = null;
+
+    
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html {
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 700px;
+            margin: 0px auto;
+        }
+
+        .mainheader {
+            width: 100%;
+            float: left;
+            padding: 20px 0;
+            float: left;
+        }
+
+        .logo {
+            width: 100%;
+            float: left;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .contact {
+            width: 100%;
+            float: left;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .header {
+            width: 100%;
+            padding: 10px 0;
+            float: left;
+            background: #044398;
+            text-align: center;
+            color: #FFF;
+        }
+
+        .content {
+            width: 90%;
+            padding: 4% 5%;
+            float: left;
+            font-size: 14px;
+            text-align: left;
+            background: #FFF;
+        }
+
+        .footer {
+            width: 100%;
+            padding: 15px 0;
+            float: left;
+            background: #044398;
+            text-align: center;
+            color: #FFF;
+        }
+
+        .button {
+            background-color: #ff0000;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        table {
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 2px solid #98d2fa;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        td {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class="content">
+            <div style="width: 100%; text-align:center;"><img style="width: 400px;" src="" alt=""></div>
+            <h4>
+                Dear Customer,<br>
+                Please verify the details and press the blue button below in order to confirm your reservation:
+            </h4>
+            <table style="width:100%">
+                <tr>
+                    <td style="background-color: #4faef0;"><strong>Booking No:</strong></td>
+                    <td>@Model.ReferenceNo</td>
+                </tr>
+
+                <tr>
+                    <td style="background-color: #4faef0;"><strong>Transfer Type :</strong></td>
+                    <td>@Model.tblTripType.Name</td>
+                </tr>
+                <tr style="background-color: #666666">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="background-color: #4faef0;"><strong>Visitor Name :</strong></td>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #4faef0;"><strong>Visitor Telephone :</strong></td>
+                    <td>@Model.Phone</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #4faef0;"><strong>Visitor Email :</strong></td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #4faef0;"><strong>Adults  :</strong></td>
+                    <td>@Model.Adults</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #4faef0;"><strong>Children :</strong></td>
+                    <td>@Model.Children</td>
+                </tr>
+                <tr>
+                    <td style="background-color: #4faef0;"><strong>Babies  :</strong></td>
+                    <td>@Model.Babies</td>
+                </tr>
+                <tr style="background-color: #666666">
+                    <td></td>
+                    <td></td>
+                </tr>
+                @if (Model.TripType == 1 || Model.TripType == 2)
+                {
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Arrival Date :</strong></td>
+                        <td>@Model.ArrivalDate</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Arrival Time :</strong></td>
+                        <td>@Model.ArrivalTime</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Arrival Place :</strong></td>
+                        <td>@Model.tblLocation.Name</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Arrival Flight No :</strong></td>
+                        <td>@Model.Flight_TrainNo</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Destination  :</strong></td>
+                        <td>@Model.tblLocation1.Name</td>
+                    </tr>
+
+                    @*<?php if($booking['DropHotelAddress']!='DROP OF PLACE' && $booking['DropHotelAddress']!='PLEASE SELECT A HOTEL'  && $booking['DropOf']!='1' && $booking['DropOf']!='2' && $booking['DropOf']!='3') {?>
+                        <tr>
+                            <td style="background-color: #4faef0;"><strong>Drop Off Hotel/Address  :</strong></td>
+                            <td><?php echo $booking['DropHotelAddress'];?></td>
+                        </tr>
+                        <?php } ?>*@
+
+                    <tr style="background-color: #666666">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+
+
+                @if (Model.TripType == 3 || Model.TripType == 2)
+                {
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Departure Date :</strong></td>
+                        <td>@Model.DepartureDate</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Departure Time :</strong></td>
+                        <td>@Model.DepartureTime</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Departure Place :</strong></td>
+                        <td>@Model.tblLocation3.Name</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Pick up Place :</strong></td>
+                        <td>@Model.tblLocation2.Name</td>
+                    </tr>
+                    @*<?php if($booking['DeparturePickAddress']!='PICK UP LOCATION' && $booking['DeparturePickAddress']!='PLEASE SELECT THE HOTEL' && $booking['DeparturePickAddress']!='PLEASE SELECT A HOTEL'){ ?>
+
+                        <?php } ?>*@
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Pick up Time :</strong></td>
+                        <td>@Model.DepartureTime</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #4faef0;"><strong>Destination  :</strong></td>
+                        <td>@Model.tblLocation3.Name</td>
+                    </tr>
+                    @*<?php if($booking['DropHotelAddress']!='DROP OF PLACE' && $booking['DropHotelAddress']!='PLEASE SELECT A HOTEL' && $booking['DepartureDrop']!='1' && $booking['DepartureDrop']!='2' && $booking['DepartureDrop']!='3') {?>
+                        <tr>
+                            <td style="background-color: #4faef0;"><strong>Drop Off Hotel/Address  :</strong></td>
+                            <td><?php echo $booking['DropHotelAddress'];?></td>
+                        </tr>
+                        <?php }?>*@
+                    <tr style="background-color: #666666">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+
+                <tr>
+                    <td style="background-color: #ffcc00;"><strong>Fare :</strong></td>
+                    <td>@Model.Amount</td>
+                </tr>
+                <tr style="background-color: #6633ff;">
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+            </table>
+
+            <div class="contact" style="margin-top: 30px; text-align:center;">
+                <a class="button" style="background-color: #0038b7; color: #fff;" href="https://localhost:44352/Account/ChangeForgetPassword">Confirm the Booking</a>
+            </div>
+
+        </div>
+
+        <div class="mainheader">
+            <div class="contact">
+                * If you have any clarifications, please call us on : (+33) 9814 759 69 or (+33) 6689 845 45<br>
+                <br>
+                Thank You<br>
+                Best Regards<br>
+                Western Tours
+            </div>
+        </div>
+
+
+    </div><!--wrapper-->
+
+</body>
+</html>
